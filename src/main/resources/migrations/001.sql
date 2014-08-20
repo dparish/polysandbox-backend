@@ -1,0 +1,124 @@
+--liquibase formatted sql
+
+--changeset dparish:1
+create table category (
+  id int not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+  name varchar(255)
+);
+
+create table size (
+  id int not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+  name varchar(255)
+)
+;
+
+create table menuitem (
+    id int not null primary key GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    name varchar(256),
+    categoryid int CONSTRAINT category_foreign_key
+	REFERENCES category ON DELETE CASCADE ON UPDATE RESTRICT,
+    sizeid int CONSTRAINT size_foreign_key
+	REFERENCES size ON DELETE CASCADE ON UPDATE RESTRICT,
+    price decimal(5,2)
+)
+;
+
+INSERT INTO CATEGORY(NAME)
+    VALUES('Cold-Pressed Juices & Protein Shakes')
+;
+
+INSERT INTO CATEGORY(NAME)
+    VALUES('Lunch')
+;
+
+INSERT INTO CATEGORY(NAME)
+    VALUES('Dinner')
+;
+
+INSERT INTO SIZE(NAME)
+    VALUES('NONE')
+;
+
+INSERT INTO SIZE(NAME)
+    VALUES('SMALL')
+;
+
+INSERT INTO SIZE(NAME)
+    VALUES('MEDIUM')
+;
+
+INSERT INTO SIZE(NAME)
+    VALUES('LARGE')
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Super Greens', 1, 4, 8.00)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Easy Greens', 1, 4, 8.00)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Watermelon Juice', 1, 4, 7.00)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Far East Turmeric Elixir', 1, 4, 9.00)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Energy Boost', 1, 4, 8.00)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Strawberry Protein Smoothie', 1, 4, 5.50)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Turkey Chili', 2, 2, 5.50)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Ginger Chicken Stir Fry', 2, 2, 6.75)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Ginger Chicken Stir Fry', 2, 3, 8.75)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Grassfed Bison Quinoa "Hash"', 2, 2, 7.50)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Grassfed Bison Quinoa "Hash"', 2, 3, 9.25)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Grassfed Bison Quinoa "Hash"', 2, 4, 13.50)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Turkey Meatloaf', 3, 2, 6.50)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Turkey Meatloaf', 3, 3, 7.75)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Turkey Meatloaf', 3, 4, 11.50)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Naked Beef', 3, 2, 7.75)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Naked Beef', 3, 3, 10.75)
+;
+
+INSERT INTO MENUITEM(NAME, CATEGORYID, SIZEID, PRICE)
+    VALUES('Naked Beef', 3, 4, 13.75)
+;
