@@ -3,3 +3,4 @@ db/
 target/
 .idea/
 *.iml
+*.ipr

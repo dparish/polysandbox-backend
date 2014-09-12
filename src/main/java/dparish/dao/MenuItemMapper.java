@@ -16,8 +16,12 @@ public class MenuItemMapper implements ResultSetMapper<MenuItem> {
 
     @Override
     public MenuItem map(int i, ResultSet resultSet, StatementContext statementContext) throws SQLException {
-        Size size = new Size().setId(resultSet.getLong("sizeid")).setName(resultSet.getString("sizename"));
-        Category category = new Category().setId(resultSet.getLong("categoryid")).setName(resultSet.getString("categoryname"));
+        Size size = new Size()
+                .setId(resultSet.getLong("sizeid"))
+                .setName(resultSet.getString("sizename"));
+        Category category = new Category()
+                .setId(resultSet.getLong("categoryid"))
+                .setName(resultSet.getString("categoryname"));
         return new MenuItem().setId(resultSet.getLong("itemid"))
                 .setSize(size)
                 .setCategory(category)

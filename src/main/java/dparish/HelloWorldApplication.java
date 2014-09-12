@@ -4,6 +4,7 @@ import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import java.util.EnumSet;
 
+import dparish.dao.CategoryDAO;
 import dparish.dao.MenuItemDAO;
 import dparish.resources.MenuResource;
 import io.dropwizard.Application;
@@ -56,9 +57,9 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         // jdbi
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "derby");
-        MenuItemDAO menuItemDAO = jdbi.onDemand(MenuItemDAO.class);
-
-        environment.jersey().register(new MenuResource(menuItemDAO));
+        environment.jersey().register(new MenuResource(
+                jdbi.onDemand(MenuItemDAO.class),
+                jdbi.onDemand(CategoryDAO.class)));
     }
 
     @Override
